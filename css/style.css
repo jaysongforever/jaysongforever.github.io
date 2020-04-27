@@ -616,7 +616,8 @@ a.social-link:hover {
   position: fixed;
   top: 0px;
   margin-top: 15%;
-  left: calc(50% + 350px);
+  left: 50%;
+  margin-left: 480px;
 }
 .toc ol {
   list-style-type: none;
@@ -630,6 +631,7 @@ a.social-link:hover {
 .toc .table-of-contents a.active {
   border-left-color: #2196f3;
   font-weight: bold;
+  font-size: 22px;
 }
 .toc .table-of-contents a:hover {
   border-left-color: #2196f3;
