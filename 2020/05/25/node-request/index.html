@@ -7,13 +7,18 @@
 
     
 
-    <title>建站 | JaySong的网络日志</title>
+    <title>Node.js接收请求处理参数 | JaySong的网络日志</title>
     <meta name="author" content="JaySong">
+    
+    <meta name="description" content="1. http模块方式接收get请求
+无参数
+
+12345678910const http = requeir(&#39;http&#39;);const localserver = http.creatServer((resquest, response) =&amp;gt; &amp;#123;    const arr = ">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Node.js接收请求处理参数"/>
     <meta property="og:site_name" content="JaySong的网络日志"/>
 
     
@@ -207,30 +212,126 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（标签）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
         
+            
 
         
-            <a class="breadcrumb" href="/tags/建站/">建站</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Node.js接收请求处理参数</h1>
+    
 
 
-    <div class="collection mt-0">
+            </div>
+            <time class="pink-link-context" datetime="2020-05-25T14:23:48.000Z"><a href="/2020/05/25/node-request/">2020-05-25</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
         
-            <a href="/2020/05/25/build-blog/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-05-25T11:25:59.000Z">2020-05-25</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                如何免费搭建个人主页
-            </a>
+            <a href="/tags/http请求/" class="chip pink lighten-1">http请求</a>
         
     </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-http模块方式接收get请求"><span class="section table-of-contents-text">1. http模块方式接收get请求</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-http模块方式接收post请求"><span class="section table-of-contents-text">2. http模块方式接收post请求</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#3-express模块接收get请求"><span class="section table-of-contents-text">3.express模块接收get请求</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#4-express模块接收post请求"><span class="section table-of-contents-text">4.express模块接收post请求</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#5-传递文件"><span class="section table-of-contents-text">5.传递文件</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h3 id="1-http模块方式接收get请求"><a href="#1-http模块方式接收get请求" class="headerlink" title="1. http模块方式接收get请求"></a>1. http模块方式接收get请求</h3><ul>
+<li>无参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = requeir(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> localserver = http.creatServer(<span class="function">(<span class="params">resquest, response</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> arr = [<span class="string">'笑话一'</span>,<span class="string">'笑话二'</span>,<span class="string">'笑话三'</span>,<span class="string">'笑话四'</span>,<span class="string">'笑话五'</span>]</span><br><span class="line">    <span class="keyword">let</span> index = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * arr.length);</span><br><span class="line">    response.end(arr[index]);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">localserver.listen(<span class="number">8079</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>有参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">const</span> localserver = http.createServer(<span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> arr = [<span class="string">'笑话一'</span>,<span class="string">'笑话二'</span>,<span class="string">'笑话三'</span>,<span class="string">'笑话四'</span>,<span class="string">'笑话五'</span>];</span><br><span class="line">    <span class="keyword">let</span> arrnew = [];</span><br><span class="line">    <span class="comment">//获取到参数num的值</span></span><br><span class="line">    <span class="keyword">let</span> num = url.parse(request.url,<span class="literal">true</span>).query.num;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> index = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * arr.length);</span><br><span class="line">      arrnew.push(arr[index]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//设置响应头,发送出去的是json内容</span></span><br><span class="line">    response.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/json;charset=utf-8'</span>);</span><br><span class="line">    response.end(<span class="built_in">JSON</span>.stringify(arrnew));</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">localserver.listen(<span class="number">8079</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-http模块方式接收post请求"><a href="#2-http模块方式接收post请求" class="headerlink" title="2. http模块方式接收post请求"></a>2. http模块方式接收post请求</h3><ul>
+<li>有参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> localserver = http.createServer(<span class="function">(<span class="params">request,response</span>) =&gt;</span> &#123;	</span><br><span class="line">    <span class="keyword">let</span> totalData = <span class="string">''</span>;</span><br><span class="line">    request.on(<span class="string">'data'</span>,(chunk) =&gt; &#123;</span><br><span class="line">        totalData += chunk;</span><br><span class="line">    &#125;)</span><br><span class="line">    request.on(<span class="string">'end'</span>,() =&gt; &#123;</span><br><span class="line">        <span class="comment">//&#123;username:admin,password:123456&#125;</span></span><br><span class="line">        <span class="keyword">let</span> obj = querystring.parse(totalData);</span><br><span class="line">    &#125;)</span><br><span class="line">    response.end(<span class="string">'hello world'</span>);</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">localserver.listen(<span class="number">8079</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-express模块接收get请求"><a href="#3-express模块接收get请求" class="headerlink" title="3.express模块接收get请求"></a>3.express模块接收get请求</h3><ul>
+<li>带参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, (request, response) =&gt; &#123;</span><br><span class="line">    <span class="comment">//&#123; id: '123', name: '提莫' &#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(request.query);</span><br><span class="line">    response.send(<span class="string">'hello world'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8087</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-express模块接收post请求"><a href="#4-express模块接收post请求" class="headerlink" title="4.express模块接收post请求"></a>4.express模块接收post请求</h3><ul>
+<li>带参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"><span class="keyword">const</span> urlencode = bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;)</span><br><span class="line">app.post(<span class="string">'/'</span>,urlencode, (request,response) =&gt; &#123;</span><br><span class="line">    <span class="comment">//&#123; id: '123', name: '提莫' &#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(request.body);</span><br><span class="line">    response.send(request.body);<span class="comment">//正常发送,不需要json转格式</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8079</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-传递文件"><a href="#5-传递文件" class="headerlink" title="5.传递文件"></a>5.传递文件</h3><ul>
+<li>formdata</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> multer = <span class="built_in">require</span>(<span class="string">'multer'</span>);</span><br><span class="line"><span class="comment">//将图片等资源存进uploads文件夹里面</span></span><br><span class="line"><span class="keyword">const</span> upload = multer(&#123; <span class="attr">dest</span>: <span class="string">'uploads/'</span> &#125;);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"><span class="comment">//请求的键名为usericon</span></span><br><span class="line">app.post(<span class="string">'/'</span>,upload.single(<span class="string">'usericon'</span>) ,(request,response) =&gt; &#123;</span><br><span class="line">    <span class="comment">//&#123; id: '123', name: '提莫' &#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(request.body);</span><br><span class="line">    <span class="comment">//里面存着usericon对象</span></span><br><span class="line">    <span class="built_in">console</span>.log(request.file);</span><br><span class="line">    response.send(request.body);<span class="comment">//正常发送,不需要json转格式</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8079</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>总结: </p>
+<ul>
+<li><p>http模块get请求获取参数使用url.parse转,然后再用query拿到参数对象.</p>
+</li>
+<li><p>http模块post请求获取参数使用querystring模块的querystring.parse拿.</p>
+</li>
+<li><p>http模块end发送出去对象,需要设置响头,</p>
+<p>response.setHeader(‘Content-Type’, ‘text/json;charset=utf-8’)</p>
+</li>
+<li><p>express模块get请求获取参数直接用request.query获取参数对象.</p>
+</li>
+<li><p>express模块post请求获取参数引入body-parser模块,通过设置app.use(bodyParser.urlencoded({extended: false})),就能通过request.body拿到参数对象.</p>
+</li>
+<li><p>express模块send出去对象不需要转码.</p>
+</li>
+</ul>
+
+                
+<p class="pink-link-context">
+    <a href="/2020/05/25/create-object/" rel="next" title="create-object">
+    上一篇：create-object
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2020/05/25/build-blog/" rel="next" title="如何免费搭建个人主页">
+    下一篇：如何免费搭建个人主页
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
