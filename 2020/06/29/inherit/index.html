@@ -7,13 +7,15 @@
 
     
 
-    <title>兴趣 | JaySong的网络日志</title>
+    <title>Javascript继承的几种方式 | JaySong的网络日志</title>
     <meta name="author" content="JaySong">
+    
+    <meta name="description" content="原型链式继承12345678910function SuperType() &amp;#123;    this.fatherName = &#39;father&#39;&amp;#125;function SubType() &amp;#123;    this.sonName = &#39;son&#39;&amp;#125;SubType.prototy">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Javascript继承的几种方式"/>
     <meta property="og:site_name" content="JaySong的网络日志"/>
 
     
@@ -215,30 +217,83 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
         <span class="breadcrumb">当前位置（分类目录）</span>
         
+            
+    
+    
+    <a class="breadcrumb" href="/categories/OC/">OC</a>
+
 
         
-            <a class="breadcrumb" href="/categories/兴趣/">兴趣</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Javascript继承的几种方式</h1>
+    
 
 
-    <div class="collection mt-0">
+            </div>
+            <time class="pink-link-context" datetime="2020-06-29T15:09:18.000Z"><a href="/2020/06/29/inherit/">2020-06-29</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
         
-            <a href="/2020/05/25/build-blog/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-05-25T11:25:59.000Z">2020-05-25</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                如何免费搭建个人主页
-            </a>
+            <a href="/tags/继承-原型链/" class="chip pink lighten-1">继承 原型链</a>
         
     </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#原型链式继承"><span class="section table-of-contents-text">原型链式继承</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h4 id="原型链式继承"><a href="#原型链式继承" class="headerlink" title="原型链式继承"></a>原型链式继承</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.fatherName = <span class="string">'father'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.sonName = <span class="string">'son'</span></span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType()</span><br><span class="line"><span class="keyword">const</span> sub = <span class="keyword">new</span> SubType()</span><br><span class="line"><span class="built_in">console</span>.log(sub.sonName)  <span class="comment">// 'son'</span></span><br><span class="line"><span class="built_in">console</span>.log(sub.fatherName)  <span class="comment">// 'father'</span></span><br></pre></td></tr></table></figure>
+
+<p>缺点：</p>
+<ul>
+<li>不能向超类型传递参数</li>
+<li>超类型的构造函数定义引用类型在子类型实例化后，会被子类型的实例所共享，也就是说子类型某个实例修改这个引用类型的值后，其他的实例访问这个引用类型的值也是修改后的值，原因是引用类型的值指向同一个地址</li>
+</ul>
+
+                
+
+
+<p class="pink-link-context">
+    <a href="/2020/06/09/vue-router/" rel="next" title="vue的路由导航守卫">
+    下一篇：vue的路由导航守卫
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
