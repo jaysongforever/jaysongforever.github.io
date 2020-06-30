@@ -171,16 +171,16 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/OC/">
-                    OC <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/兴趣/">
+                    兴趣 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/兴趣/">
-                    兴趣 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/OC/">
+                    OC <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -264,7 +264,7 @@
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#原型链式继承"><span class="section table-of-contents-text">原型链式继承</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#借用构造函数继承"><span class="section table-of-contents-text">借用构造函数继承</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#原型链式继承"><span class="section table-of-contents-text">原型链式继承</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#借用构造函数继承"><span class="section table-of-contents-text">借用构造函数继承</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#组合继承"><span class="section table-of-contents-text">组合继承</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#原型式继承"><span class="section table-of-contents-text">原型式继承</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#寄生式继承"><span class="section table-of-contents-text">寄生式继承</span></a></li></ol>
 </div>
 
 
@@ -281,6 +281,32 @@
 <p>缺点：</p>
 <ul>
 <li>利用借调构造函数的方式，虽然能向超类型传参，但是如果在构造函数中定义方法，未来构造函数实例化不同的实例，实例上的方法都是没有指向同一个地址，也就是说做做不到方法的复用</li>
+</ul>
+<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.fatherName = name</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperTypeName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.fatherName)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    SuperType.call(<span class="keyword">this</span>, name) <span class="comment">// 第一次执行SuperType</span></span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType() <span class="comment">// 第二次执行SuperType</span></span><br><span class="line">SubType.prototype.getSubTypeAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> sub1 = <span class="keyword">new</span> SubType(<span class="string">'jayson'</span>,<span class="number">20</span>)</span><br><span class="line"><span class="keyword">const</span> sub2 = <span class="keyword">new</span> SubType(<span class="string">'jayson'</span>,<span class="number">20</span>)</span><br><span class="line"><span class="built_in">console</span>.log(sub1.fatherName) <span class="comment">// 'jaysong'</span></span><br><span class="line"><span class="built_in">console</span>.log(sub2.age) <span class="comment">// 20</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(sub1.getSuperTypeName === sub2.getSuperTypeName)</span><br></pre></td></tr></table></figure>
+
+<p>优点：</p>
+<ul>
+<li>利用借调构造函数和原型链继承结合，既实现了向超类型传参，把方法定义在原型上又保证了各个实例对方法的复用，这是用的比较多的实现继承的方式</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>超类型构造函数始终会执行两次</li>
+</ul>
+<h4 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个函数，返回一个实例指向传入的参数对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    F.prototype = o</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name: <span class="string">'jaysong'</span>,</span><br><span class="line">    friend: [<span class="string">'jack'</span>, <span class="string">'tom'</span>, <span class="string">'jerry'</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> one = object(obj)</span><br><span class="line"><span class="keyword">const</span> two = object(obj)</span><br><span class="line"><span class="built_in">console</span>.log(one.name)</span><br><span class="line"><span class="built_in">console</span>.log(two.name)</span><br><span class="line">one.friend.push(<span class="string">'andy'</span>)</span><br><span class="line">two.friend.push(<span class="string">'alan'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(obj.friend)</span><br><span class="line"><span class="comment">//['jack','tom','jerry','andy','alan']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当传入一个参数时ojbect的作用相当于Object.create()，传两个参数，第二个参数想当于Object.definedProperty的第二参数，如Object.definedProperties('obj',&#123;name: &#123;value: 'jaysong'&#125;&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<p>特点：</p>
+<ul>
+<li>借助原型可以基于已有的对象创建新对象，同时不必因此创建自定义类型</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>创建的对象由于是他们的原型都是指向同一个对象，所以对此原型中定义的引用类型的修改会影响到其他的对象</li>
+</ul>
+<h4 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个函数，返回一个实例指向传入的参数对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    F.prototype = o</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义一个函数，返回一个添加了sayhi方法的实例（相当于增强了实例），这个实例的原型指向传入的参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createObj</span>(<span class="params">original</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> obj = object(original)</span><br><span class="line">    obj.sayHi = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hi'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name: <span class="string">'jaysong'</span>,</span><br><span class="line">    friends: [<span class="string">'jack'</span>, <span class="string">'tom'</span>, <span class="string">'jerry'</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> one = createObj(obj)</span><br><span class="line"><span class="keyword">const</span> two = createObj(obj)</span><br><span class="line">one.friends.push(<span class="string">'andy'</span>)</span><br><span class="line">two.friends.push(<span class="string">'alan'</span>)</span><br><span class="line">one.sayHi() <span class="comment">// hi</span></span><br><span class="line">two.sayHi() <span class="comment">// hi</span></span><br><span class="line"><span class="built_in">console</span>.log(one.sayHi === two.sayHi) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.friends)</span><br><span class="line"><span class="comment">//['jack','tom','jerry','andy','alan']</span></span><br></pre></td></tr></table></figure>
+
+<p>缺点：</p>
+<ul>
+<li>与原型式继承有同样的缺点，同时不能做到函数的复用</li>
 </ul>
 
                 
