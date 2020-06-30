@@ -171,16 +171,16 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/OC/">
-                    OC <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/兴趣/">
+                    兴趣 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/兴趣/">
-                    兴趣 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/OC/">
+                    OC <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -256,13 +256,13 @@
             
     <div class="tags-row">
         
-            <a href="/tags/继承-原型链/" class="chip pink lighten-1">继承 原型链</a>
+            <a href="/tags/继承-原型链/" class="chip pink lighten-1">继承,原型链</a>
         
     </div>
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#原型链式继承"><span class="section table-of-contents-text">原型链式继承</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#原型链式继承"><span class="section table-of-contents-text">原型链式继承</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#借用构造函数继承"><span class="section table-of-contents-text">借用构造函数继承</span></a></li></ol>
 </div>
 
 
@@ -273,6 +273,12 @@
 <ul>
 <li>不能向超类型传递参数</li>
 <li>超类型的构造函数定义引用类型在子类型实例化后，会被子类型的实例所共享，也就是说子类型某个实例修改这个引用类型的值后，其他的实例访问这个引用类型的值也是修改后的值，原因是引用类型的值指向同一个地址</li>
+</ul>
+<h4 id="借用构造函数继承"><a href="#借用构造函数继承" class="headerlink" title="借用构造函数继承"></a>借用构造函数继承</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.fatherName = name</span><br><span class="line">  <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'我的名字是：'</span>+name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  SuperType.call(<span class="keyword">this</span>, name)</span><br><span class="line">  <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> sub = <span class="keyword">new</span> SubType(<span class="string">"jaysong"</span>, <span class="number">20</span>)</span><br><span class="line"><span class="built_in">console</span>.log(sub.fatherName)  <span class="comment">// 'jaysong'</span></span><br><span class="line">sub.sayName() <span class="comment">// '我的名字是jaysong'</span></span><br><span class="line"><span class="keyword">const</span> sub2 = <span class="keyword">new</span> SubType(<span class="string">'jaysong'</span>, <span class="number">20</span>)</span><br><span class="line"><span class="built_in">console</span>.log(sub2.sayName === sub.sayName) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>缺点：</p>
+<ul>
+<li>利用借调构造函数的方式，虽然能向超类型传参，但是如果在构造函数中定义方法，未来构造函数实例化不同的实例，实例上的方法都是没有指向同一个地址，也就是说做做不到方法的复用</li>
 </ul>
 
                 
