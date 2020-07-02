@@ -7,13 +7,15 @@
 
     
 
-    <title>OC | JaySong的网络日志</title>
+    <title>browser-event-loop | JaySong的网络日志</title>
     <meta name="author" content="JaySong">
+    
+    <meta name="description" content="12345678910111213141516171819202122232425262728console.log(&#34;1&#34;)setTimeout(function () &amp;#123;  // setTimeout1  	console.log(&#34;2&#34;)  	new Promise(function">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="browser-event-loop"/>
     <meta property="og:site_name" content="JaySong的网络日志"/>
 
     
@@ -223,36 +225,91 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
         <span class="breadcrumb">当前位置（分类目录）</span>
         
+            
+    
+    
+    <a class="breadcrumb" href="/categories/EventLoop/">EventLoop</a>
+
 
         
-            <a class="breadcrumb" href="/categories/OC/">OC</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>browser-event-loop</h1>
+    
 
 
-    <div class="collection mt-0">
+            </div>
+            <time class="pink-link-context" datetime="2020-07-02T15:41:12.000Z"><a href="/2020/07/02/browser-event-loop/">2020-07-02</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
         
-            <a href="/2020/06/29/inherit/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-06-29T15:09:18.000Z">2020-06-29</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Javascript继承的几种方式
-            </a>
-        
-            <a href="/2020/05/25/create-object/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-05-25T15:11:29.000Z">2020-05-25</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                创建对象的几种方式
-            </a>
+            <a href="/tags/事件循环/" class="chip pink lighten-1">事件循环</a>
         
     </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    
+</div>
+
+
+            <div class="entry pink-link-context">
+                <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"1"</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">// setTimeout1</span></span><br><span class="line">  	<span class="built_in">console</span>.log(<span class="string">"2"</span>)</span><br><span class="line">  	<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(<span class="string">"4"</span>)</span><br><span class="line">    	resolve()</span><br><span class="line">  	&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">// then2</span></span><br><span class="line">    	<span class="built_in">console</span>.log(<span class="string">"5"</span>)</span><br><span class="line">  	&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"7"</span>)</span><br><span class="line">    resolve()</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// then1</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"8"</span>)  </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// setTimeout2</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"9"</span>)</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123; <span class="comment">// </span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"11"</span>)</span><br><span class="line">        resolve()</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">// then3</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"12"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>分析： </p>
+<ol>
+<li>先执行同步代码<code>console.log(&quot;1&quot;)</code></li>
+<li>遇到第一个setTimeout,放入宏任务队列中[setTimeout1]，继续向下执行</li>
+<li>遇到Promise执行里面的<code>console.log(&quot;7&quot;)</code>,然后resolve，将then1放入微任务队列[then1]</li>
+<li>继续向下执行，遇见setTimeout2，将setTimeout2放入宏任务队列[setTimeout1，setTimeout2]</li>
+<li>当前同步代码执行完毕，开始执行微任务代码then1<code>console.log(&quot;8&quot;)</code></li>
+<li>当前微任务队列执行完毕，开始执行宏任务代码setTimeout1，此时宏任务队列还剩[setTimeout2],<code>console.log(&quot;2&quot;)</code>,遇到Promise继续执行<code>console.log(&quot;4&quot;)</code>,然后resolve，将then2放入微任务队列</li>
+<li>继续执行微任务then2,<code>console.log(&quot;5&quot;)</code></li>
+<li>微任务队列清空，接着执行宏任务队列setTimeout2,<code>console.log(&quot;9&quot;)</code>,遇见Promise执行<code>console.log(&quot;11&quot;)</code>,然后resolve，将then3放入微任务队列[then3]</li>
+<li>执行微任务队列then3，<code>console.log(&quot;12&quot;)</code></li>
+<li>得出结果1&gt;7&gt;8&gt;2&gt;4&gt;5&gt;9&gt;11&gt;12</li>
+</ol>
+
+                
+
+
+<p class="pink-link-context">
+    <a href="/2020/06/29/inherit/" rel="next" title="Javascript继承的几种方式">
+    下一篇：Javascript继承的几种方式
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
