@@ -10,7 +10,7 @@
     <title>XSS攻击和CSRF攻击 | JaySong的网络日志</title>
     <meta name="author" content="JaySong">
     
-    <meta name="description" content="xss攻击是什么xss叫跨站脚本攻击，corss site scripting，WEB安全领域为了和css区分开来，于是改成xss。xss大致分为三种，反射型，存储型，DOM型。
+    <meta name="description" content="xss攻击是什么xss叫跨站脚本攻击，Cross Site Scripting，WEB安全领域为了和css区分开来，于是改成xss。xss大致分为三种，反射型，存储型，DOM型。
 1.反射型例子：用户点击了某个链接发送一个请求到攻击者起的一个服务器，攻击者从服务端响应回去一段script包裹的恶意代">
     
     
@@ -172,8 +172,8 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/EventLoop/">
-                    EventLoop <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/WEB安全/">
+                    WEB安全 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -182,6 +182,14 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/兴趣/">
                     兴趣 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/EventLoop/">
+                    EventLoop <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -198,14 +206,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/vue/">
                     vue <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/WEB安全/">
-                    WEB安全 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -284,7 +284,7 @@
 
 
             <div class="entry pink-link-context">
-                <h4 id="xss攻击是什么"><a href="#xss攻击是什么" class="headerlink" title="xss攻击是什么"></a>xss攻击是什么</h4><p>xss叫跨站脚本攻击，corss site scripting，WEB安全领域为了和css区分开来，于是改成xss。xss大致分为三种，反射型，存储型，DOM型。</p>
+                <h4 id="xss攻击是什么"><a href="#xss攻击是什么" class="headerlink" title="xss攻击是什么"></a>xss攻击是什么</h4><p>xss叫跨站脚本攻击，Cross Site Scripting，WEB安全领域为了和css区分开来，于是改成xss。xss大致分为三种，反射型，存储型，DOM型。</p>
 <p>1.反射型例子：用户点击了某个链接发送一个请求到攻击者起的一个服务器，攻击者从服务端响应回去一段script包裹的恶意代码，浏览器拿到代码后解析为js代码，执行某些操作。<br>2.存储型例子：用户输入某些用script包裹的代码文本传给服务器，服务器不做处理的又将这些文本传给其他用户，浏览器拿到代码后解析为js代码，执行某些操作，类似于用户通过富文本输入，用$.html和innerHTML解析代码容易出现此类攻击<br>3.DOM型例子：发生在客户端，用户输入某些标签，可以通过某些dom技巧将它转为内嵌型js代码，如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">$&#123;value&#125;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>将input输入的值给a的href，如果输入的是<code>&#39;&#39; onclick=&quot;alert(&#39;xss&#39;)&quot;</code>,那么浏览器就会解析成<code>&lt;a href onclick=&quot;alert(&#39;xss&#39;)&quot;&gt;</code>,于是就形成了内嵌型的js代码</p>
