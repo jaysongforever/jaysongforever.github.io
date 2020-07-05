@@ -7,16 +7,13 @@
 
     
 
-    <title>XSS攻击和CSRF攻击 | JaySong的网络日志</title>
+    <title>Vue | JaySong的网络日志</title>
     <meta name="author" content="JaySong">
-    
-    <meta name="description" content="xss攻击是什么xss叫跨站脚本攻击，Cross Site Scripting，WEB安全领域为了和css区分开来，于是改成xss。xss大致分为三种，反射型，存储型，DOM型。
-1.反射型例子：用户点击了某个链接发送一个请求到攻击者起的一个服务器，攻击者从服务端响应回去一段script包裹的恶意代">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="XSS攻击和CSRF攻击"/>
+    
     <meta property="og:site_name" content="JaySong的网络日志"/>
 
     
@@ -242,102 +239,30 @@
 
     <main>
         <div class="container main-container">
-    <nav class="page-nav hide-on-small-only">
+    
+
+<nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（分类目录）</span>
-        
-            
-    
-    
-    <a class="breadcrumb" href="/categories/WEB安全/">WEB安全</a>
-
-
+        <span class="breadcrumb">当前位置（标签）</span>
         
 
+        
+            <a class="breadcrumb" href="/tags/Vue/">Vue</a>
         
     </div>
 </nav>
 
-<article>
-    <div class="card">
-        <div class="card-content">
-            
-
-            <div class="article-title">
-                
-    
-        <h1>XSS攻击和CSRF攻击</h1>
-    
 
 
-            </div>
-            <time class="pink-link-context" datetime="2020-07-03T15:17:35.000Z"><a href="/2020/07/03/XSS%E6%94%BB%E5%87%BB%E5%92%8CCSRF%E6%94%BB%E5%87%BB/">2020-07-03</a></time>
-
-            <span id="busuanzi_container_page_pv" class="read-times-container">
-    <i class="fa fa-eye"></i>
-    <span id="busuanzi_value_page_pv"></span>
-</span>
-
-            
-    <div class="tags-row">
+    <div class="collection mt-0">
         
-            <a href="/tags/WEB安全/" class="chip pink lighten-1">WEB安全</a>
+            <a href="/2020/07/05/%E9%9D%A2%E8%AF%95%E9%A2%98-Vue/" class="collection-item grey-text text-darken-1">
+                <time datetime="2020-07-05T11:23:57.000Z">2020-07-05</time>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                面试题-Vue
+            </a>
         
     </div>
-
-
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#xss攻击是什么"><span class="section table-of-contents-text">xss攻击是什么</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#CSRF攻击是什么"><span class="section table-of-contents-text">CSRF攻击是什么</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#预防XSS攻击"><span class="section table-of-contents-text">预防XSS攻击</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#预防CSRF攻击"><span class="section table-of-contents-text">预防CSRF攻击</span></a></li></ol>
-</div>
-
-
-            <div class="entry pink-link-context">
-                <h4 id="xss攻击是什么"><a href="#xss攻击是什么" class="headerlink" title="xss攻击是什么"></a>xss攻击是什么</h4><p>xss叫跨站脚本攻击，Cross Site Scripting，WEB安全领域为了和css区分开来，于是改成xss。xss大致分为三种，反射型，存储型，DOM型。</p>
-<p>1.反射型例子：用户点击了某个链接发送一个请求到攻击者起的一个服务器，攻击者从服务端响应回去一段script包裹的恶意代码，浏览器拿到代码后解析为js代码，执行某些操作。<br>2.存储型例子：用户输入某些用script包裹的代码文本传给服务器，服务器不做处理的又将这些文本传给其他用户，浏览器拿到代码后解析为js代码，执行某些操作，类似于用户通过富文本输入，用$.html和innerHTML解析代码容易出现此类攻击<br>3.DOM型例子：发生在客户端，用户输入某些标签，可以通过某些dom技巧将它转为内嵌型js代码，如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">$&#123;value&#125;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>将input输入的值给a的href，如果输入的是<code>&#39;&#39; onclick=&quot;alert(&#39;xss&#39;)&quot;</code>,那么浏览器就会解析成<code>&lt;a href onclick=&quot;alert(&#39;xss&#39;)&quot;&gt;</code>,于是就形成了内嵌型的js代码</p>
-<h4 id="CSRF攻击是什么"><a href="#CSRF攻击是什么" class="headerlink" title="CSRF攻击是什么"></a>CSRF攻击是什么</h4><p>CSRF全称叫Cross Site Request Forgery(跨站资源伪造),可以利用Cookie发起CSRF攻击。<br>用户Cookie有时候保存了用户的一些信息，刚登录的用户，后台返回一个带有用户信息的页面，每次访问服务器，请求都会携带这个Cookie去服务器，服务器可以由此来识别用户身份。登录的用户会发请求去删除他的某个东西，请求如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//www.c.com：8081/delete:id</span></span><br></pre></td></tr></table></figure>
-<p>当位于c页面的用户访问了a页面，a页面的代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"http://www.c.com:8081/delete/87343"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>于是a页面就会通过img发起一个get请求，攻击者利用用户的Cookie欺骗了服务器，删掉了这个东西，于是当用户再次回到c页面，会发现内容已经被删除了，而这些是在用户毫无感知的情况下进行的。</p>
-<h4 id="预防XSS攻击"><a href="#预防XSS攻击" class="headerlink" title="预防XSS攻击"></a>预防XSS攻击</h4><ul>
-<li>HttpOnly 防止劫取 Cookie，设置了httponly后，浏览器精致js代码无法获取设置了httponly的Cookie</li>
-<li>输入检查，前端进行输入过滤,不能将用户输入的东西作为可信来源，将&lt;&gt;之类的进行转义<code>&amp;lt;</code>&lt;,<code>&amp;gt;</code>&gt;,导入xss插件，做标签白名单过滤</li>
-<li>输出检查，后端在将内容返回给前端的时候进行过滤</li>
-</ul>
-<h4 id="预防CSRF攻击"><a href="#预防CSRF攻击" class="headerlink" title="预防CSRF攻击"></a>预防CSRF攻击</h4><ul>
-<li>设置get请求不能对数据进行修改</li>
-<li>限制第三方网站访问到用户Cookie</li>
-<li>阻止第三方网站请求接口</li>
-<li>请求时附带验证信息，比如验证码或者token</li>
-</ul>
-
-                
-<p class="pink-link-context">
-    <a href="/2020/07/05/%E9%9D%A2%E8%AF%95%E9%A2%98-Vue/" rel="next" title="面试题-Vue">
-    上一篇：面试题-Vue
-  </a>
-</p>
-
-
-
-<p class="pink-link-context">
-    <a href="/2020/07/02/browser-event-loop/" rel="next" title="浏览器事件循环EventLoop">
-    下一篇：浏览器事件循环EventLoop
-  </a>
-</p>
-
-
-            </div>
-			
-        </div>
-    </div>
-</article>
-
-
-
-
 
 
 </div>
