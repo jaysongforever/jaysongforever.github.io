@@ -290,7 +290,7 @@
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTTP状态码及其含义"><span class="section table-of-contents-text">HTTP状态码及其含义</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTTP状态码及其含义"><span class="section table-of-contents-text">HTTP状态码及其含义</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTML5新特性"><span class="section table-of-contents-text">HTML5新特性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#css3新特性"><span class="section table-of-contents-text">css3新特性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTML5的离线存储怎么用，原理是什么"><span class="section table-of-contents-text">HTML5的离线存储怎么用，原理是什么</span></a></li></ol>
 </div>
 
 
@@ -300,6 +300,23 @@
 <p><strong>3xx:</strong> 重定向<br>301：资源已经永久移动到新位置<br>302：临时重定向<br>303：临时重定向，且总是使用get请求新的URI<br>304：自从上次请求后，请求的网页未发生修改</p>
 <p><strong>4xx：</strong> 客户端错误<br>400：服务器无法理解请求的格式，客户端应当不在用此内容发起请求<br>401：请求未授权<br>403：拒绝访问<br>404：请求的URI不存在或者内容已经删除，无法匹配到资源</p>
 <p><strong>5xx</strong><br>500：服务器内部的错误<br>501：服务器暂时无法处理请求，可能是过载或维护</p>
+<h4 id="HTML5新特性"><a href="#HTML5新特性" class="headerlink" title="HTML5新特性"></a><strong>HTML5新特性</strong></h4><p>新增标签：section，aside，article，header，footer，nav…</p>
+<p>媒体：video，audio</p>
+<p>绘图：Canvas(js绘2D图)，SVG(XML描述2D图形语言)</p>
+<p>表单控件input的type属性：url，number，email，search，time，color，week，month…</p>
+<p>新的技术：WebWorker(将数据较大的任务给子线程，子线程处理好之后返回给主线程)，WebSocket(全双工通讯)，拖放API，WebStorage(localStorage,sessionStorage)</p>
+<h4 id="css3新特性"><a href="#css3新特性" class="headerlink" title="css3新特性"></a><strong>css3新特性</strong></h4><p>新增各种css选择器<br>圆角 border-radius<br>多列布局<br>阴影和反射<br>文字特效text-shadow<br>线性渐变<br>旋转transform<br>:first-of-type 选择属于其父元素的首个p元素的每个p元素<br>p:last-of-type 选择属于其父元素的最后p元素的每个p元素。<br>p:only-of-type 选择属于其父元素唯一的p元素的每个p元素。<br>p:only-child 选择属于其父元素的唯一子元素的每个p元素。<br>p:nth-child(2) 选择属于其父元素的第二个子元素的每个 p元素。<br>::after 在元素之前添加内容,也可以用来做清除浮动。<br>::before 在元素之后添加内容。<br>:enabled 已启用的表单元素。<br>:disabled 已禁用的表单元素。<br>:checked 单选框或复选框被选中。</p>
+<h4 id="HTML5的离线存储怎么用，原理是什么"><a href="#HTML5的离线存储怎么用，原理是什么" class="headerlink" title="HTML5的离线存储怎么用，原理是什么"></a><strong>HTML5的离线存储怎么用，原理是什么</strong></h4><p>1.在html标签中加入manifest属性，指定其缓存路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"./cache.manifest"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2.在cache.manifest文件定义需要缓存和不需要缓存的文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"># version 2017年7月7日21:15:06</span><br><span class="line"># 这个是注释</span><br><span class="line"> </span><br><span class="line">CACHE:</span><br><span class="line">stylesheet/style.css</span><br><span class="line">iamges/icon.png</span><br><span class="line"> </span><br><span class="line">NETWORK:</span><br><span class="line">http:<span class="comment">//www.baidu.com/</span></span><br><span class="line"> </span><br><span class="line">FALLBACK:</span><br><span class="line">/ <span class="regexp">/index.html</span></span><br><span class="line"><span class="regexp">images/</span> images/error.png</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>manifest文件里边的CACHE MANIFEST以及CACHE是必须要有的。</li>
+<li>CACHE后定义要缓存的文件。</li>
+<li>NETWORK表示只在有网的情况下才能访问的资源，可以不定义NETWORK。</li>
+<li>FALLBACK表示当出现不可访问的资源时使用后备资源进行访问（两种资源用空格隔开，前一部分表示资源可用时的路径，第二部分是备用资源的路径）</li>
+</ul>
 
                 
 
