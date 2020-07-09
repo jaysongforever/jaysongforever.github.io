@@ -173,16 +173,16 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/WEB安全/">
-                    WEB安全 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/EventLoop/">
+                    EventLoop <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/EventLoop/">
-                    EventLoop <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/WEB安全/">
+                    WEB安全 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -290,7 +290,7 @@
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTTP状态码及其含义"><span class="section table-of-contents-text">HTTP状态码及其含义</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTML5新特性"><span class="section table-of-contents-text">HTML5新特性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#css3新特性"><span class="section table-of-contents-text">css3新特性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTML5的离线存储怎么用，原理是什么"><span class="section table-of-contents-text">HTML5的离线存储怎么用，原理是什么</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTTP状态码及其含义"><span class="section table-of-contents-text">HTTP状态码及其含义</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTML5新特性"><span class="section table-of-contents-text">HTML5新特性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#css3新特性"><span class="section table-of-contents-text">css3新特性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#HTML5的离线存储怎么用，原理是什么"><span class="section table-of-contents-text">HTML5的离线存储怎么用，原理是什么</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#跨域是什么，怎么解决跨域问题"><span class="section table-of-contents-text">跨域是什么，怎么解决跨域问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#谈谈你对webpack的看法"><span class="section table-of-contents-text">谈谈你对webpack的看法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#"><span class="section table-of-contents-text">**</span></a></li></ol>
 </div>
 
 
@@ -310,14 +310,26 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"./cache.manifest"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>2.在cache.manifest文件定义需要缓存和不需要缓存的文件</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"># version 2017年7月7日21:15:06</span><br><span class="line"># 这个是注释</span><br><span class="line"> </span><br><span class="line">CACHE:</span><br><span class="line">stylesheet/style.css</span><br><span class="line">iamges/icon.png</span><br><span class="line"> </span><br><span class="line">NETWORK:</span><br><span class="line">http:<span class="comment">//www.baidu.com/</span></span><br><span class="line"> </span><br><span class="line">FALLBACK:</span><br><span class="line">/ <span class="regexp">/index.html</span></span><br><span class="line"><span class="regexp">images/</span> images/error.png</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>manifest文件里边的CACHE MANIFEST以及CACHE是必须要有的。</li>
 <li>CACHE后定义要缓存的文件。</li>
 <li>NETWORK表示只在有网的情况下才能访问的资源，可以不定义NETWORK。</li>
 <li>FALLBACK表示当出现不可访问的资源时使用后备资源进行访问（两种资源用空格隔开，前一部分表示资源可用时的路径，第二部分是备用资源的路径）</li>
 </ul>
-
+<h4 id="跨域是什么，怎么解决跨域问题"><a href="#跨域是什么，怎么解决跨域问题" class="headerlink" title="跨域是什么，怎么解决跨域问题"></a><strong>跨域是什么，怎么解决跨域问题</strong></h4><p>跨域的产生来自于浏览器的同源策略，即浏览器为了安全起见，定义了一个文档如何或者它加载的脚本如何与另一个源的数据资源进行交互，具体来说要满足同源策源，就必须让本源与目标源的协议，域名，端口，都相同，才能避免跨域问题，有如下解决办法</p>
+<p><strong>方法一:</strong> 通过jsonp跨域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">script.type = <span class="string">'text/javascript'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传参并指定回调执行函数为onBack</span></span><br><span class="line">script.src = <span class="string">'http://www.....:8080/login?user=admin&amp;callback=onBack'</span>;</span><br><span class="line"><span class="built_in">document</span>.head.appendChild(script);</span><br><span class="line"><span class="comment">//后端响应回一个onBack函数的调用，浏览器解析script代码就调用了onBack函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调执行函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onBack</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">    alert(<span class="built_in">JSON</span>.stringify(res));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>方法二：</strong> document.domain + iframe跨域</p>
+<blockquote>
+<p>此方案仅限主域相同，子域不同的跨域应用场景</p>
+</blockquote>
+<p>1.）父窗口：(<a href="http://www.domain.com/a.html" target="_blank" rel="noopener">http://www.domain.com/a.html</a>)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe id=<span class="string">"iframe"</span> src=<span class="string">"http://child.domain.com/b.html"</span>&gt;&lt;<span class="regexp">/iframe&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    document.domain = 'domain.com';</span></span><br><span class="line"><span class="regexp">    var user = 'admin';</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p>2.）子窗口：(<a href="http://child.domain.com/b.html" target="_blank" rel="noopener">http://child.domain.com/b.html</a>)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.domain = <span class="string">'domain.com'</span>;</span><br><span class="line"><span class="comment">// 获取父窗口中变量</span></span><br><span class="line">alert(<span class="string">'get js data from parent ---&gt; '</span> + <span class="built_in">window</span>.parent.user);</span><br></pre></td></tr></table></figure>
+<p><strong>方法三：</strong> nginx代理跨域<br><strong>方法四：</strong> nodejs中间件代理跨域<br><strong>方法五：</strong> 后端在头部信息里面设置access-contro-allow-origin配置域名</p>
+<h4 id="谈谈你对webpack的看法"><a href="#谈谈你对webpack的看法" class="headerlink" title="谈谈你对webpack的看法"></a><strong>谈谈你对webpack的看法</strong></h4><p>webpack是一个模块打包工具，我们能使用他管理我们的模块依赖，并编译输出为我们所需要的静态资源。webpack能帮我们打包html，js，css，图片资源，文件资源等，让开发效率更高。由于浏览器只能识别html，js，css，所以对于不同类型的文件，webpack利用对应的loader能去解析这些文件，最终将这些文件打包成浏览器可识别的文件，如利用babel-loader将es6的代码打包成es5的，利用less-loader将less预处理的样式转为css。webpack会分析各模块间的关系，最后 成了优化且合并后的静态资源。</p>
+<h4 id><a href="#" class="headerlink" title="**"></a>**</h4>
                 
 
 
