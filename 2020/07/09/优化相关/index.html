@@ -207,14 +207,6 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/OC/">
-                    OC <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/vue/">
                     vue <span class="right">1 篇</span></a>
                 </a>
@@ -223,8 +215,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/面试/">
-                    面试 <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/OC/">
+                    OC <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -233,6 +225,14 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/优化/">
                     优化 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/面试/">
+                    面试 <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -306,7 +306,7 @@
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目做过哪些性能优化"><span class="section table-of-contents-text">项目做过哪些性能优化</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目做过哪些性能优化"><span class="section table-of-contents-text">项目做过哪些性能优化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目亮点，封装Dialog组件"><span class="section table-of-contents-text">项目亮点，封装Dialog组件</span></a></li></ol>
 </div>
 
 
@@ -329,6 +329,16 @@
 <li>避免图片 src 为空</li>
 <li>把样式表放在link 中</li>
 <li>把JavaScript放在页面底部</li>
+</ul>
+<h4 id="项目亮点，封装Dialog组件"><a href="#项目亮点，封装Dialog组件" class="headerlink" title="项目亮点，封装Dialog组件"></a><strong>项目亮点，封装Dialog组件</strong></h4><ul>
+<li>该组件需要提供hook指定渲染位置，默认渲染在body下面。</li>
+<li>然后改组件可以指定外层样式，如宽度等</li>
+<li>组件外层还需要一层mask来遮住底层内容，点击mask可以执行传进来的onCancel函数关闭Dialog。</li>
+<li>另外组件是可控的，需要外层传入visible表示是否可见。</li>
+<li>然后Dialog可能需要自定义头head和底部footer，默认有头部和底部，底部有一个确认按钮和取消按钮，确认按钮会执行外部传进来的onOk事件，然后取消按钮会执行外部传进来的onCancel事件。</li>
+<li>当组件的visible为true时候，设置body的overflow为hidden，隐藏body的滚动条，反之显示滚动条。</li>
+<li>组件高度可能大于页面高度，组件内部需要滚动条。</li>
+<li>只有组件的visible有变化且为ture时候，才重渲染组件内的所有内容</li>
 </ul>
 
                 

@@ -197,14 +197,6 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/OC/">
-                    OC <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/vue/">
                     vue <span class="right">1 篇</span></a>
                 </a>
@@ -213,8 +205,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/面试/">
-                    面试 <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/OC/">
+                    OC <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -223,6 +215,14 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/优化/">
                     优化 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/面试/">
+                    面试 <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -501,9 +501,34 @@
 <li>无跨域问题。</li>
 </ul>
 <h4 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a><strong>深浅拷贝</strong></h4><blockquote>
-<p>df1</p>
+<p>浅拷贝：仅仅是复制了引用，彼此之间的操作会互相影响<br>深拷贝：在堆中重新分配内存，不同的地址，相同的值，互不影响。<br>总的来说，深浅拷贝的主要区别就是：复制的是引用还是复制的是实例。</p>
 </blockquote>
 <p><strong>浅拷贝</strong></p>
+<ul>
+<li>Array.prototype.slice(),Array.prototype.concat()只对数组的第一层进行深拷贝，对内层引用类型类型是浅拷贝。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [[<span class="number">1</span>, <span class="number">2</span>], <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> b = a.concat();</span><br><span class="line"><span class="built_in">console</span>.log(a === b); <span class="comment">// -&gt; false</span></span><br><span class="line"></span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// -&gt; [[0, 2], 3, 4]</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// -&gt; [[0, 2], 3, 4]</span></span><br></pre></td></tr></table></figure></li>
+<li>… 展开运算符：对象第一层的深拷贝</li>
+<li>Object.assign({}, obj)：对象第一层的深拷贝</li>
+</ul>
+<p><strong>深拷贝</strong></p>
+<ul>
+<li>JSON.parse()和JSON.stringify()：转换过程中undefined、function、symbol 会在转换过程中被忽略。  </li>
+<li>手写一个深拷贝<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!obj &amp;&amp; <span class="keyword">typeof</span> obj !== <span class="string">'object'</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'error arguments'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// const targetObj = obj.constructor === Array ? [] : &#123;&#125;;</span></span><br><span class="line">  <span class="keyword">const</span> targetObj = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//只对对象自有属性进行拷贝</span></span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (obj[key] &amp;&amp; <span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span>) &#123;</span><br><span class="line">        targetObj[key] = deepCopy(obj[key]);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        targetObj[key] = obj[key];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> targetObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+</ul>
 
                 
 <p class="pink-link-context">
