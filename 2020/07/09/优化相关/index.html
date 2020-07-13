@@ -183,14 +183,6 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/WEB安全/">
-                    WEB安全 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/EventLoop/">
                     EventLoop <span class="right">1 篇</span></a>
                 </a>
@@ -207,8 +199,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/vue/">
-                    vue <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/WEB安全/">
+                    WEB安全 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -217,6 +209,14 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/OC/">
                     OC <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/vue/">
+                    vue <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -306,7 +306,7 @@
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目做过哪些性能优化"><span class="section table-of-contents-text">项目做过哪些性能优化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目亮点，封装Dialog组件"><span class="section table-of-contents-text">项目亮点，封装Dialog组件</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目做过哪些性能优化"><span class="section table-of-contents-text">项目做过哪些性能优化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目亮点，封装Dialog组件"><span class="section table-of-contents-text">项目亮点，封装Dialog组件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#webpack相关"><span class="section table-of-contents-text">webpack相关</span></a></li></ol>
 </div>
 
 
@@ -339,6 +339,41 @@
 <li>当组件的visible为true时候，设置body的overflow为hidden，隐藏body的滚动条，反之显示滚动条。</li>
 <li>组件高度可能大于页面高度，组件内部需要滚动条。</li>
 <li>只有组件的visible有变化且为ture时候，才重渲染组件内的所有内容</li>
+</ul>
+<h4 id="webpack相关"><a href="#webpack相关" class="headerlink" title="webpack相关"></a><strong>webpack相关</strong></h4><p><strong>1.打包体积 优化思路</strong></p>
+<ul>
+<li>提取第三方库或通过引用外部文件的方式引入第三方库</li>
+<li>代码压缩插件UglifyJsPlugin</li>
+<li>服务器启用gzip压缩</li>
+<li>按需加载资源文件 require.ensure</li>
+<li>优化devtool中的source-map</li>
+<li>剥离css文件，单独打包</li>
+<li>去除不必要插件，通常就是开发环境与生产环境用同一套配置文件导致</li>
+</ul>
+<p><strong>2.打包效率</strong></p>
+<ul>
+<li>开发环境采用增量构建，启用热更新</li>
+<li>开发环境不做无意义的工作如提取css计算文件hash等</li>
+<li>配置devtool</li>
+<li>选择合适的loader</li>
+<li>个别loader开启cache 如babel-loader</li>
+<li>第三方库采用引入方式</li>
+<li>提取公共代码</li>
+<li>优化构建时的搜索路径 指明需要构建目录及不需要构建目录</li>
+<li>模块化引入需要的部分</li>
+</ul>
+<p><strong>3.说一下webpack的一些plugin，怎么使用webpack对项目进行优化</strong><br>  <strong>构建优化</strong></p>
+<ul>
+<li>减少编译体积 ContextReplacementPugin、IgnorePlugin、babel-plugin-import、babel-plugin-transform-runtime</li>
+<li>并行编译 happypack、thread-loader、uglifyjsWebpackPlugin开启并行</li>
+<li>缓存 cache-loader、hard-source-webpack-plugin、uglifyjsWebpackPlugin开启缓存、babel-loader开启缓存</li>
+<li>预编译 dllWebpackPlugin &amp;&amp; DllReferencePlugin、auto-dll-webapck-plugin</li>
+</ul>
+<p>  <strong>性能优化</strong></p>
+<ul>
+<li>减少编译体积 Tree-shaking、Scope Hositing</li>
+<li>hash缓存 webpack-md5-plugin</li>
+<li>拆包 splitChunksPlugin、import()、require.ensure</li>
 </ul>
 
                 
