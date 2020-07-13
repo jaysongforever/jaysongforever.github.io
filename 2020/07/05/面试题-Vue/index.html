@@ -172,6 +172,14 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/WEB安全/">
+                    WEB安全 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/EventLoop/">
                     EventLoop <span class="right">1 篇</span></a>
                 </a>
@@ -182,14 +190,6 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/兴趣/">
                     兴趣 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/WEB安全/">
-                    WEB安全 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -304,7 +304,7 @@
             <div class="entry pink-link-context">
                 <h4 id="对Vue的生命周期的理解"><a href="#对Vue的生命周期的理解" class="headerlink" title="对Vue的生命周期的理解"></a><strong>对Vue的生命周期的理解</strong></h4><p>Vue的生命周期是Vue从创建到销毁的一个过程，在这个过程当中会经历8个阶段，分别是创建前/后，载入前/后，更新前/后，销毁前/后。</p>
 <p>在组件创建前，会初始化事件和生命周期，在这初始化后，生命周期钩子就等着之后被调用。此时在beforeCreat钩子函数中，data和methods还是不能使用，data中的值还是undefined。下一步，就会初始化data和methods，等他们初始化完了之后，在created的钩子函数中就能访问methods和data了。</p>
-<p>然后进入挂载界面。在挂载之前，用户还是不能看到真正的页面，这一步会去根据data解析模板指令，在指令解析完之后模板会被渲染到内存当中，所以在beforeMount阶段还是拿不到dom。接着进入挂载阶段，在挂载阶段会去判断组件中有没有el,如果有，再去判断有没有template选项，如果也有，就会用template的结构替换进挂载点，如果没有template，就利用el的模板结构进行挂载，如果连el也没有的话，那么就会去用$mount进行挂载，它返回实例自身，配合$el可以拿到实例的根节点，就能用js的进行挂载。所以在mouted钩子中，此时页面已经渲染完毕，用户看到的就是真实的数据，在这个阶段，如果项目中用到的一些ui相关的库，需要去获取dom，就可以在这个钩子函数当中进行操作。在这一步后，页面已经离开了创建阶段，开始进入运行阶段。</p>
+<p>然后进入挂载界面。在挂载之前，用户还是不能看到真正的页面，这一步会去根据data解析模板指令，在指令解析完之后模板会被渲染到内存当中，所以在beforeMount阶段还是拿不到dom。接着进入挂载阶段，在挂载阶段会去判断组件中有没有el,如果有，再去判断有没有template选项，如果也有，就会用template的结构替换进挂载点，如果没有template，就利用el的模板结构进行挂载，如果连el也没有的话，那么就会去用<code>$mount</code>进行挂载，它返回实例自身，配合$el可以拿到实例的根节点，就能用js的进行挂载。所以在mouted钩子中，此时页面已经渲染完毕，用户看到的就是真实的数据，在这个阶段，如果项目中用到的一些ui相关的库，需要去获取dom，就可以在这个钩子函数当中进行操作。在这一步后，页面已经离开了创建阶段，开始进入运行阶段。</p>
 <p>此时就来到更新阶段。在beforeUpdate之前，数据就已经更新好了，只是页面还没响应更新，所以此时data的值是最新的，但是页面却还没发生改变，在updated时，页面才会重新渲染，此时用户才能看到更新后的页面。这个阶段会在组件运行过程当中反复进行，数据更新=&gt;视图更新，形成一个闭环。</p>
 <p>最后一个阶段是销毁阶段，在销毁前，数据方法和dom还是能够正常访问的，这个阶段是真正销毁前的一个准备阶段，然后开始真正进行销毁，此时解除事件的监听，解除子组件，解除对数据的watcher，销毁后对data的改变不会再触发周期函数，说明此时vue实例已经解除了事件监听以及和dom的绑定，但是dom结构依然存在。<br><img src="/2020/07/05/%E9%9D%A2%E8%AF%95%E9%A2%98-Vue/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0.png" alt><br>以上就是vue的整个生命周期过程。</p>
 <h4 id="Vue的生命周期的作用"><a href="#Vue的生命周期的作用" class="headerlink" title="Vue的生命周期的作用"></a><strong>Vue的生命周期的作用</strong></h4><p>vue的生命周期能让你更好的掌握vue的实例从创建到销毁的一个过程，让我们在控制整个Vue实例的过程时更容易形成好的逻辑,在这个过程中执行的钩子函数能帮你更好的利用组件和增强组件，对组件进行更好的拓展。</p>
