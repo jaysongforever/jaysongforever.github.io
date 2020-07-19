@@ -172,16 +172,16 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/WEB安全/">
-                    WEB安全 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/EventLoop/">
+                    EventLoop <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/EventLoop/">
-                    EventLoop <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/WEB安全/">
+                    WEB安全 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -196,16 +196,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/OC/">
-                    OC <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/vue/">
+                    vue <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/vue/">
-                    vue <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/OC/">
+                    OC <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -325,7 +325,7 @@
 <p>但是这样的JavaScript操作虚拟DOM然后进行重绘整个视图也是相当消耗性能的，于是就想，能不能只修改数据发生改变那个部分呢。所以Vue.js将DOM抽象成一个以JavaScript对象为节点的虚拟DOM树，以VNode节点模拟真实DOM节点，可以对这颗抽象树进行创建节点、删除节点以及修改节点等操作，在这过程中都不需要操作真实DOM，只需要操作JavaScript对象，大大提升了性能。</p>
 <p>修改以后经过diff算法得出一些需要修改的最小单位，再将这些小单位的视图进行更新。这样做减少了很多不需要的DOM操作，大大提高了性能。</p>
 <p>Vue就使用了这样的抽象虚拟dom，他不依赖某个平台，它可以是浏览器平台，也可以是weex，甚至是node平台也可以对这样一棵抽象Dom树进行创建删除修改等操作，这也为前后端同构提供了可能。</p>
-<h4 id="diff算法的理解，为什么Vue中不建议用index作为key"><a href="#diff算法的理解，为什么Vue中不建议用index作为key" class="headerlink" title="diff算法的理解，为什么Vue中不建议用index作为key"></a><strong>diff算法的理解，为什么Vue中不建议用index作为key</strong></h4><p>diff是patch操作的核心算法，patch将新老VNode节点进行比对，然后将根据两者的比较结果进行最小单位地修改视图，而不是将整个视图。它其实就是vue中一个比对新旧虚拟节点差异性的算法。</p>
+<h4 id="diff算法的理解，为什么Vue中不建议用index作为key"><a href="#diff算法的理解，为什么Vue中不建议用index作为key" class="headerlink" title="diff算法的理解，为什么Vue中不建议用index作为key"></a><strong>diff算法的理解，为什么Vue中不建议用index作为key</strong></h4><p>diff是patch操作的核心算法，patch将新老VNode节点进行比对，然后将根据两者的比较结果进行最小单位地修改视图，而不是重绘整个视图。它其实就是vue中一个比对新旧虚拟节点差异性的算法。</p>
 <p>当响应式数据更新后，<code>set</code>方法会<code>notify</code>通知所有订阅者<code>Watcher</code>，<code>Watcher</code>会去<code>trigger</code>对应的<code>component render function</code>执行<code>vm._update</code>，<code>vm._update(vm._render())</code>会去驱动视图更新。<code>vm._render()</code>其实生成的就是 vnode,这个<code>render funcion</code>会touch <code>data</code>中的数据，然后重新<code>render</code>为新的<code>Vnode</code>,<code>vm._update</code>在内部会对新旧<code>Vnode</code>进行 <code>patch</code>过程。vue会去比较新旧<code>Vnode</code>对象，按照js虚拟dom树，从上到下，从左往右同级比较，如果是<code>sameVnode</code>，则会去执行<code>patchVnode</code>，执行具体的优化补丁操作，相当于对<code>Vnode</code>的增删查改，update 虚拟dom的属性，如果有<code>children</code>，则会去递归的判断<code>children</code>的节点是不是<code>sameVnode</code>，然后再去<code>patchVnode</code>。最后将虚拟的<code>dom tree</code>渲染为真实的<code>dom tree</code>。</p>
 <p>其实这个问题提的也不太准确，至于能不能将index作为key，需要视情况来定，如果原来的数据没有发生变异性改变，那么完全，可以将index作为key，如果发生了变异性改变，就需要用id来作为key。举个例子，有这么个数组,开始是顺序渲染，点击按钮对数组进行reverse，如果是用index作为key，当他进行sameVnode的判断的时候，因为每次循环key都是从0开始，所以他们的key是相同的，继续进行判断，<code>sameVnode</code>函数返回<code>true</code>,接下来进行<code>patchVnode</code>，然后发现<code>children</code>的文本节点不一样，就会替换掉文本节点，然后渲染为真实dom。但是如果<code>key</code>为唯一的<code>id</code>，他也会去拿第一个节点和最后那个节点比对，key为id，第一个和最后一个<code>id</code>相同，进行接下来的判断，<code>sameVnode</code>函数返回<code>true</code>，进行<code>patchVnode</code>，发生两个节点一模一样，于是复用，从而减少了操作dom的开销,达到dom元素复用的目的。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sameVnode</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    a.key === b.key &amp;&amp; (</span><br><span class="line">      (</span><br><span class="line">        a.tag === b.tag &amp;&amp;</span><br><span class="line">        a.isComment === b.isComment &amp;&amp;</span><br><span class="line">        isDef(a.data) === isDef(b.data) &amp;&amp;</span><br><span class="line">        sameInputType(a, b)</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

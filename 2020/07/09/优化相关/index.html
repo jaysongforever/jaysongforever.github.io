@@ -183,16 +183,16 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/WEB安全/">
-                    WEB安全 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/EventLoop/">
+                    EventLoop <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/EventLoop/">
-                    EventLoop <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/WEB安全/">
+                    WEB安全 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -207,16 +207,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/OC/">
-                    OC <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/vue/">
+                    vue <span class="right">1 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/vue/">
-                    vue <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/OC/">
+                    OC <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -306,7 +306,7 @@
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目做过哪些性能优化"><span class="section table-of-contents-text">项目做过哪些性能优化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目亮点，封装Dialog组件"><span class="section table-of-contents-text">项目亮点，封装Dialog组件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#webpack相关"><span class="section table-of-contents-text">webpack相关</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目做过哪些性能优化"><span class="section table-of-contents-text">项目做过哪些性能优化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#项目亮点，封装Dialog组件"><span class="section table-of-contents-text">项目亮点，封装Dialog组件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#webpack相关"><span class="section table-of-contents-text">webpack相关</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#iOS-h5中兼容问题"><span class="section table-of-contents-text">iOS h5中兼容问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#Element-ui-bug"><span class="section table-of-contents-text">Element-ui bug</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#get和post区别"><span class="section table-of-contents-text">get和post区别</span></a></li></ol>
 </div>
 
 
@@ -375,8 +375,24 @@
 <li>hash缓存 webpack-md5-plugin</li>
 <li>拆包 splitChunksPlugin、import()、require.ensure</li>
 </ul>
+<p><strong>4.对webpack的认识</strong><br>webpack 是收把项目当作一个整体，通过一个给定的的主文件，webpack 将从这个文件开始找到你的项目的所有依赖文件，使用 loaders 处理它们，最后打包成一个或多个浏览器可识别的 js 文件</p>
+<h4 id="iOS-h5中兼容问题"><a href="#iOS-h5中兼容问题" class="headerlink" title="iOS h5中兼容问题"></a><strong>iOS h5中兼容问题</strong></h4><ul>
+<li>对于H5的点击事件需要绝对避免使用click进行处理而是采用tap进行代替，这二个事件的区别在Android上体现并不是很明显，但是在ios上能感觉click有明显的300ms的延迟。如果发现点击事件存在延迟可以查看一下代码写的是不是click事件，将click与tap进行代替就可以了。除了普通元素的click延迟，ios的输入框弹出输入法都存在有延迟并且还会存在点击穿透的现象，为了快速的解决这个问题可以引入一个插件 —— fastclick.js。而这300ms的延迟的原因就是iOS系统早期的设定问题，因为iOS工程师弄了个双击缩放的功能，而这个功能就是在用户点击网页后在300ms内判断用户有没有双击，300ms过后才会认定用户是在执行点击。用touch事件代替click事件</li>
+<li>对keydown、keypress支持不是很好,用input事件代替</li>
+<li>input=date有可能会出现弹不出日期选择框的问题</li>
+</ul>
+<h4 id="Element-ui-bug"><a href="#Element-ui-bug" class="headerlink" title="Element-ui bug"></a><strong>Element-ui bug</strong></h4><ul>
+<li>el-cascader 级联选择器：数据多，高度过高，下面会出现横向滚动条</li>
+</ul>
+<h4 id="get和post区别"><a href="#get和post区别" class="headerlink" title="get和post区别"></a><strong>get和post区别</strong></h4><p>Get 和 post 区别<br>Vue 是如何实现监听数组变化的（数组重构）<br>盒子如何实现水平重置居中</p>
 
                 
+<p class="pink-link-context">
+    <a href="/2020/07/14/%E9%9D%A2%E8%AF%95%E9%A2%98-%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="next" title="面试题-小程序">
+    上一篇：面试题-小程序
+  </a>
+</p>
+
 
 
 <p class="pink-link-context">
